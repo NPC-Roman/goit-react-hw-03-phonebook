@@ -6,7 +6,7 @@ import Form from './Form';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
-class App extends Component {
+/*class App extends Component {
   state = {
     contacts: [
       { id: 'id-1', name: 'Homer Simpson', number: '459-12-56' },
@@ -15,18 +15,31 @@ class App extends Component {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
+  };*/
+class App extends Component {
+  state = {
+    contacts: [],
   };
 
   componentDidMount() {
     this.allContactsFromLS();
   }
 
+  /*
   componentDidUpdate(prevProps, prevState) {
     if (this.state.contacts !== prevState.contacts) {
       localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
     }
+  }*/
+
+  componentDidMount() {
+    const contacts = JSON.parse(localStorage.getItem('contacts'));
+    if (contacts) {
+      this.setState({ contacts });
+    }
   }
 
+  /*
   allContactsFromLS = () => {
     try {
       return this.setState({
@@ -35,7 +48,7 @@ class App extends Component {
     } catch (error) {
       return [];
     }
-  };
+  };*/
 
   onAddContact = newName => {
     if (
